@@ -8,18 +8,22 @@
         <h2>Loading DATA ...</h2>
       </div>
     </div>
-    <h1>Users</h1>
+    <h1>POSTS</h1>
     <table>
       <thead>
         <tr>
-          <th>Name</th>
-          <th>UserName</th>
+          <th>UserID</th>
+          <th>Index</th>
+          <th>Title</th>
+          <th>Body</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="item in data">
-          <td>{{ item.name }}</td>
-          <td>{{ item.username }}</td>
+          <td>{{ item.userId }}</td>
+          <td>{{ item.id }}</td>
+          <td>{{ item.title }}</td>
+          <td>{{ item.body }}</td>
         </tr>
       </tbody>
     </table>
@@ -28,18 +32,19 @@
 
 <script>
 import { useFetch } from '../composable/UseFetch.js';
-
+const prev = 0;
 export default {
   name: 'UserList',
   setup() {
     const { data, error, loading } = useFetch(
-      'https://jsonplaceholder.typicode.com/users',
+      'https://jsonplaceholder.typicode.com/posts',
       {}
     );
     return {
       data,
       error,
       loading,
+      prev,
     };
   },
 };
